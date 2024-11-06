@@ -36,7 +36,7 @@ const apiCanaryBlueprint = async function () {
   let body = process.env.BODY !== "" ? JSON.parse(process.env.BODY) : null;
   let headers = process.env.HEADERS !== "" ? JSON.parse(process.env.HEADERS) : { "content-type": "application/json" };
 
-  // Set request option for Verify https://api-iam.platform.dev.app.mercell.com/user-management/auth/signIn
+  // Set request options
   let requestOptionsStep1 = {
     hostname,
     method,
@@ -48,7 +48,7 @@ const apiCanaryBlueprint = async function () {
   };
   requestOptionsStep1['headers']['User-Agent'] = [synthetics.getCanaryUserAgentString(), requestOptionsStep1['headers']['User-Agent']].join(' ');
 
-  // Set step config option for Verify https://api-iam.platform.dev.app.mercell.com/user-management/auth/signIn
+  // Set step config options
   let stepConfig1 = {
     includeRequestHeaders: true,
     includeResponseHeaders: true,
