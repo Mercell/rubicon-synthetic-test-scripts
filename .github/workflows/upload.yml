@@ -27,10 +27,11 @@ jobs:
 
       - name: Upload scripts to S3
         run: |
-          find scripts -type f -print0 | while IFS= read -r -d $'\0' file; do
-            filename=$(basename "$file")
-
-            zip "zipped_scripts/${filename}.zip" "$file"
+          for script in $(ls scripts/); do
+            mkdir -p nodejs/node_modules;
+            cp scripts/${script} nodejs/node_modules/${script};
+            zip zipped_scripts/${script}.zip nodejs/node_modules/${script};
+            rm -rf nodejs;
           done
 
           aws s3 sync ./zipped_scripts/ s3://rubicon-monitoring-syntethics20241106143225886000000001/scripts/ --delete
