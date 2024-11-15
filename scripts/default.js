@@ -34,7 +34,7 @@ const apiCanaryBlueprint = async function () {
   let path = process.env.PATH || "/";
   let method = process.env.METHOD || "GET";
   let body = process.env.BODY !== undefined ? JSON.parse(process.env.BODY) : null;
-  let headers = process.env.HEADERS !== undefined ? JSON.parse(process.env.HEADERS) : { "content-type": "application/json" };
+  let headers = process.env.HEADERS !== undefined ? JSON.parse(process.env.HEADERS) : {};
 
   // Set request options
   let requestOptionsStep1 = {
